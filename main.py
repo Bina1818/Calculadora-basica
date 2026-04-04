@@ -1,70 +1,68 @@
-import matematica
+from matematica import *
 
 while True:
     print("Digite sair para desligar o sistema")
-    print("Operações: soma, subtração, multiplicação, divisão")
+    print("Operações: soma, subtração, multiplicação, divisão inteira, divisão decimal")
     console = input(': ').lower()
     print()
 
-    if console == 'sair':
-        print('Tem certeza que quer desligar o sistema ?')
-        escolha = input('s/n: ').lower()
+    match console:
+        case 'sair':
+            print('tem de que quer desligar o sistema ?')
+            escolha = input('s/n: ').lower().strip()
 
-        if escolha == 's':
-            break
+            match escolha:
+                case 's':
+                    break
 
-        elif escolha == 'n':
-            continue
+                case 'n':
+                    continue
 
-        else:
-            print("Aviso:[Operação inválida]")
-            print('use comandos já presentes no menu')
-
-
-    elif console == 'soma':
-        print("insira os números")
-        numero1 = matematica.entrada_numerica('Numero 1')
-        numero2 = matematica.entrada_numerica('Numero 2')
-        resultado = matematica.soma(numero1, numero2)
-        print(f'Resultado = {resultado}')
-        print()
-
-
-    elif console == 'subtração':
-        print("insira os números")
-        numero1 = matematica.entrada_numerica('Numero 1')
-        numero2 = matematica.entrada_numerica('Numero 2')
-        resultado = matematica.subtracao(numero1, numero2)
-        print(f'Resultado = {resultado}')
-        print()
-
-
-    elif console == 'multiplicação':
-        print("insira os números")
-        numero1 = matematica.entrada_numerica('Numero 1')
-        numero2 = matematica.entrada_numerica('Numero 2')
-        resultado = matematica.multiplicacao(numero1, numero2)
-        print(f'Resultado = {resultado}')
-        print()
-
-
-    elif console == 'divisão':
-        print("insira os números")
-        numero1 = matematica.entrada_numerica('Numero 1')
-        numero2 = matematica.entrada_numerica('Numero 2')
-        resultado = matematica.divisao(numero1, numero2)
-        if not resultado is None:
-            print(f"Resultado = {resultado}")
+                case _:
+                    print('AVISO:[entrada inválida]')
+                    print('use comandos já presentes no menu')
         
+        case 'soma':
+            numeros = entrada_repetida(entrada_tipo=entrada_numerica, vezes=2)
+            resultado = soma(numeros[0], numeros[1])
+            print(f'Resultado = {resultado}')
+                
+        case 'subtração':
+            numeros = entrada_repetida(entrada_tipo=entrada_numerica, vezes=2)
+            resultado = subtracao(numeros[0], numeros[1])
+            print(f'Resultado = {resultado}')
+        
+        case 'multiplicação':
+            numeros = entrada_repetida(entrada_tipo=entrada_numerica, vezes=2)
+            resultado = multiplicacao(numeros[0], numeros[1])
+            print(f'Resultado = {resultado}')
+        
+        case 'divisão':
+            print('AVISO:[operação inválida]')
+            print('operação de divisão deve ser especificada')
+        
+        case 'divisão inteira':
+            numeros = entrada_repetida(entrada_tipo=entrada_numerica, vezes=2)
+            resultado = divisao_inteira(numeros[0], numeros[1])
+            if resultado is None:
+                print("Sem resultado")
+                continue
 
-        else:
-            print("Sem resultado")
-        print()
+            print(f'Resultado = {resultado}')
+
+        case 'divisão decimal':
+            numeros = entrada_repetida(entrada_tipo=entrada_numerica, vezes=2)
+            resultado = divisao_decimal(numeros[0], numeros[1])
+            if resultado is None:
+                print('Sem resultado')
+                continue
+
+            print(f'Resultado = {resultado}')
 
 
-    else:
-        print("Aviso:[Operação inválida]")
-        print('use comandos já presentes no menu')
-        print()
+        
+        case _:
+            print('AVISO[operação inválida]')
+            print('use comandos presentes no menu')
 
-print("desenvolvido por Bina Softwares")
+print("Bina software agradece")
