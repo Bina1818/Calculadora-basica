@@ -1,68 +1,75 @@
 from matematica import *
+from utilidades import *
 
 while True:
-    print("Digite sair para desligar o sistema")
-    print("Operações: soma, subtração, multiplicação, divisão inteira, divisão decimal")
-    console = input(': ').lower()
-    print()
+    print("digite sair para desligar o sistema")
+    menu_operacoes()
+    console = input(': ').lower().strip()
 
     match console:
         case 'sair':
-            print('tem de que quer desligar o sistema ?')
-            escolha = input('s/n: ').lower().strip()
-
+            escolha = menu_saida()
             match escolha:
                 case 's':
                     break
 
                 case 'n':
                     continue
-
-                case _:
-                    print('AVISO:[entrada inválida]')
-                    print('use comandos já presentes no menu')
         
         case 'soma':
-            numeros = entrada_repetida(entrada_tipo=entrada_numerica, vezes=2)
-            resultado = soma(numeros[0], numeros[1])
-            print(f'Resultado = {resultado}')
+            print('qual tipo de numero usar ?')
+            numero_tipo = input('inteiro ou decimal: ').lower().strip()
+            if not numero_tipo in ['inteiro', 'decimal']:
+                print('entrada inválida ! use as opções no menu')
+                print()
+                continue
+
+            algoritmo_soma(numero_tipo)
                 
-        case 'subtração':
-            numeros = entrada_repetida(entrada_tipo=entrada_numerica, vezes=2)
-            resultado = subtracao(numeros[0], numeros[1])
-            print(f'Resultado = {resultado}')
-        
-        case 'multiplicação':
-            numeros = entrada_repetida(entrada_tipo=entrada_numerica, vezes=2)
-            resultado = multiplicacao(numeros[0], numeros[1])
-            print(f'Resultado = {resultado}')
-        
-        case 'divisão':
-            print('AVISO:[operação inválida]')
-            print('operação de divisão deve ser especificada')
-        
-        case 'divisão inteira':
-            numeros = entrada_repetida(entrada_tipo=entrada_numerica, vezes=2)
-            resultado = divisao_inteira(numeros[0], numeros[1])
-            if resultado is None:
-                print("Sem resultado")
+        case 'subtração' | 'subtracao':
+            print('qual tipo de numero usar ?')
+            numero_tipo = input('inteiro ou decimal: ').lower().strip()
+            if not numero_tipo in ['inteiro', 'decimal']:
+                print('entrada inválida ! use as opções no menu')
+                print()
                 continue
 
-            print(f'Resultado = {resultado}')
+            algoritmo_subtracao(numero_tipo)
+                
 
-        case 'divisão decimal':
-            numeros = entrada_repetida(entrada_tipo=entrada_numerica, vezes=2)
-            resultado = divisao_decimal(numeros[0], numeros[1])
-            if resultado is None:
-                print('Sem resultado')
+        case 'multiplicação' | 'multiplicacao':
+            print('qual tipo de numero usar ?')
+            numero_tipo = input('inteiro ou decimal: ').lower().strip()
+            if not numero_tipo in ['inteiro', 'decimal']:
+                print('entrada inválida ! use as opções no menu')
+                print()
                 continue
 
-            print(f'Resultado = {resultado}')
+            algoritmo_multiplicacao(numero_tipo)
+                
+        case 'divisão' | 'divisao':
+            print('qual tipo de numero usar ?')
+            numero_tipo = input('inteiro ou decimal: ').lower().strip()
+            if not numero_tipo in ['inteiro', 'decimal']:
+                print('entrada inválida ! use as opções no menu')
+                print()
+                continue
 
+            algoritmo_divisao(numero_tipo)
+                
+        case 'potencia':
+            print('qual tipo de numero usar ?')
+            numero_tipo = input('inteiro ou decimal: ').lower().strip()
+            if not numero_tipo in ['inteiro', 'decimal']:
+                print('entrada inválida ! use as opções no menu')
+                print()
+                continue
 
-        
+            algoritmo_potencia_positiva(numero_tipo)
+
         case _:
-            print('AVISO[operação inválida]')
+            print('operação inválida')
             print('use comandos presentes no menu')
+            print()
 
 print("Bina software agradece")
